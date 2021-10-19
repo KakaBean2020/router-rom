@@ -12,7 +12,7 @@ on:
         # Friendly description to be shown in the UI instead of 'name'
         description: 设置编译的固件型号,空格分隔.
         # Default value if no value is explicitly provided
-        default: "K2P"
+        default: "K2P_nano"
         # Input has to be provided for the workflow to run
         required: false
       release:
@@ -81,7 +81,7 @@ jobs:
       run: | 
         cd ${{ env.DIR }}/trunk
         valtime=$(TZ='Asia/Shanghai' date '+%Y-%m-%d %H:%M')
-        val2="\\1 footer_code +='编译日期 $valtime Sunoy by <a href=\"https://github.com/tick-guo/router-rom\" target=\"blank\">tick-guo</a><br>';"
+        val2="\\1 footer_code +='compiled $valtime Sunoy by <a href=\"https://github.com/tick-guo/router-rom\" target=\"blank\">tick-guo</a><br>';"
         #echo $val2
         sed -i "s#\(.*Non-Commercial Use Only[^;]*;\).*#$val2#" user/www/n56u_ribbon_fixed/state.js
         grep "Non-Commercial Use Only" user/www/n56u_ribbon_fixed/state.js
